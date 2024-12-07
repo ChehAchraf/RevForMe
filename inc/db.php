@@ -3,12 +3,10 @@
 $host = "localhost";
 $use = "root";
 $pass = ""; 
-$db_name = "reserv";
+$db_name = "revforme";
 
 $conn = mysqli_connect($host,$use,$pass,$db_name);
 
-if ($conn){
-    echo "connected";
-}else{
+if (!$conn){
     echo "Note Connected " . mysqli_connect_error($conn) ;
 }
