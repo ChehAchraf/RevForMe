@@ -31,6 +31,6 @@ CREATE TABLE IF NOT EXISTS reservation (
     date_reservation TIMESTAMP NOT NULL,
     status ENUM('En attente', 'Confirmée', 'Annulée') NOT NULL,
     PRIMARY KEY (id_reservation),
-    FOREIGN KEY (id_client) REFERENCES cliente(id_client),
-    FOREIGN KEY (id_activite) REFERENCES activite(id_activite)
+    FOREIGN KEY (id_client) REFERENCES cliente(id_client) ON DELETE CASCADE,
+    FOREIGN KEY (id_activite) REFERENCES activite(id_activite)ON DELETE CASCADE
 );
