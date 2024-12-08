@@ -1,10 +1,18 @@
 <?php 
+include('../inc/db.php');
   session_start();
   if(isset($_SESSION['added'])){
     echo $_SESSION['added'];
     unset($_SESSION['added']);
   }
-?>
+  $sql = "SELECT COUNT(*) FROM `cliente`";
+  $result = $conn->query($sql);
+  $row = $result->fetch_row();
+
+  $cmd = "SELECT COUNT(*) FROM `activite`";
+  $do = $conn->query($cmd);
+  $row_activity = $do->fetch_row();
+  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,37 +81,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>52</h3>
+          <h3><?php echo $do == true ? $row_activity[0] : 0 ?></h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Messages</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>99</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Views</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-teal w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>23</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Shares</h4>
+        <h4>Events</h4>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>50</h3>
+          <h3><?php echo $result == true ? $row[0] : 0 ?></h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Users</h4>
@@ -116,7 +104,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <div class="w3-container">
             <h3>Create Client</h3>
             <div class="w3-card-4 w3-padding-32 w3-margin-top w3-round w3-container">
-                <form action="../inc/add.php" method="POST" 
+                <form action="../inc/add_client.php" method="POST" 
                     
                     <label for="nom">First Name (Nom):</label><br>
                     <input class="w3-input w3-border w3-round" type="text" id="nom" name="nom" required><br><br>
@@ -146,7 +134,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <div class="w3-container">
             <h3>Create Event</h3>
             <div class="w3-card-4 w3-padding-32 w3-margin-top w3-round w3-container">
-            <form action="../inc/add.php" method="POST">
+            <form action="../inc/add_activity.php" method="POST">
 
                 <label for="titre">Event Title (Titre):</label><br>
                 <input class="w3-input w3-border w3-round" type="text" id="titre" name="titre" required><br><br>
