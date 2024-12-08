@@ -162,6 +162,41 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
             </div>
         </div>
     </div>
+    <div class="w3-half">
+        <div class="w3-container">
+            <h3>Make a Reservation</h3>
+            <div class="w3-card-4 w3-padding-32 w3-margin-top w3-round w3-container">
+                <form action="process_reservation.php" method="POST">
+
+                    <?php 
+                      $sql = "SELECT * FROM `cliente`";  
+                      $result = $conn->query($sql);
+                    ?>
+                    <label for="client_id">Select Client:</label><br>
+                    <select class="w3-input w3-border w3-round" id="client_id" name="client_id" required>
+                        <option value="" disabled selected>Select a Client</option>
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                        <option value="<?php echo $row['id_client'] ?>"><?php echo $row['nom'] ." ".  $row['nom'] ?></option>
+                        <?php endwhile?>
+                    </select><br><br>
+
+                    <?php
+                      $sql = "SELECT * FROM `activite`";
+                      $result = $conn->query($sql);
+                    ?>
+                    <label for="activity_id">Select Activity:</label><br>
+                    <select class="w3-input w3-border w3-round" id="activity_id" name="activity_id" required>
+                        <option value="" disabled selected>Select an Activity</option>
+                        <?php while($row = $result->fetch_assoc()): ?>
+                        <option value="<?php echo $row['id_activite'] ?>"><?php echo $row['titre'] ?></option>
+                        <?php endwhile ?>
+                    </select><br><br>
+
+                    <button type="submit" class="w3-btn w3-blue w3-round">Make Reservation</button>
+                </form>
+            </div>
+        </div>
+    </div>
   </div>
 
   <hr>
