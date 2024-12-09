@@ -201,48 +201,46 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <div class="w3-container">
             <h3>Confirm Reservations</h3>
             <div class="w3-card-4 w3-padding-32 w3-margin-top w3-round w3-container">
-                <form action="process_confirmation.php" method="POST">
-
-                    <?php
-                        $sql =  "SELECT 
-                        reservation.id_reservation, 
-                        cliente.nom AS client_name, 
-                        cliente.prenom AS client_prenom, 
-                        activite.titre AS activity_title, 
-                        reservation.status
-                    FROM reservation
-                    JOIN cliente ON reservation.id_client = cliente.id_client
-                    JOIN activite ON reservation.id_activite = activite.id_activite";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            echo "<table class='w3-table w3-bordered'>";
-                            echo "<tr><th>Client Name</th><th>Activity</th><th>Status</th><th>Actions</th></tr>";
-
-                            // Loop through reservations and display them
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" . $row['client_name'] . "</td>";
-                                echo "<td>" . $row['activity_title'] . "</td>";
-                                echo "<td>" . $row['status'] . "</td>";
-                                echo "<td>
-                                        <select name='status[" . $row['id_reservation'] . "]' class='w3-select w3-border w3-round'>
-                                            <option value='En attente'" . ($row['status'] == 'En attente' ? ' selected' : '') . ">En attente</option>
-                                            <option value='Confirmée'" . ($row['status'] == 'Confirmée' ? ' selected' : '') . ">Confirmée</option>
-                                            <option value='Annulée'" . ($row['status'] == 'Annulée' ? ' selected' : '') . ">Annulée</option>
-                                        </select>
-                                      </td>";
-                                echo "</tr>";
-                            }
-
-                            echo "</table>";
-                            echo "<br><button type='submit' class='w3-btn w3-blue w3-round'>Update Status</button>";
-                        } else {
-                            echo "No reservations found.";
-                        }
-                    ?>
-                    
-                </form>
+            <?php 
+                $sql = " SELECT * FROM `reservation` 
+                        INNER JOIN 
+                        cliente on reservation.id_client = cliente.id_client
+                        INNER JOIN
+                        activite on reservation.id_activite = activite.id_activite";
+                $result = $conn->query($sql);
+                if(!$result){
+                  echo "there must be an error";
+                }
+            ?>
+            
+            <form action="../inc/edit_act_status.php" method="POST">
+              <input value="">
+              <table class="w3-table w3-bordered">
+                  <tr>
+                      <th>Client Name</th>
+                      <th>Activity</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                  </tr>
+                  <?php while($row = $result->fetch_assoc()): ?>
+                  <tr>
+                      <td><?php echo $row['nom'] ?></td> <!-- Replace with client name -->
+                      <td><?php echo $row['titre'] ?></td> <!-- Replace with activity title -->
+                      <td><?php echo $row['status'] ?></td> <!-- Replace with current status -->
+                      <td>
+                      <select name='status[" . $row['id_reservation'] . "]' class='w3-select w3-border w3-round'>
+                        <option value='En attente'" . ($row['status'] == 'En attente' ? ' selected' : '') . ">En attente</option>
+                        <option value='Confirmée'" . ($row['status'] == 'Confirmée' ? ' selected' : '') . ">Confirmée</option>
+                        <option value='Annulée'" . ($row['status'] == 'Annulée' ? ' selected' : '') . ">Annulée</option>
+                    </select>
+                      </td>
+                  </tr>
+                  <!-- Repeat the above <tr> for each reservation -->
+                  <?php endwhile ?>
+              </table>
+              <br>
+              <button type="submit" class="w3-btn w3-blue w3-round">Update Status</button>
+            </form>
             </div>
         </div>
     </div>
