@@ -218,7 +218,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
             ?>
             
             <form action="../inc/edit_act_status.php" method="POST">
-              <input value="">
               <table class="w3-table w3-bordered">
                   <tr>
                       <th>Client Name</th>
