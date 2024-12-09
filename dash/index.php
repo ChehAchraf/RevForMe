@@ -5,6 +5,10 @@ include('../inc/db.php');
     echo $_SESSION['added'];
     unset($_SESSION['added']);
   }
+  if(isset($_SESSION['changed'])){
+    echo $_SESSION['changed'];
+    unset($_SESSION['changed']);
+  }
   $sql = "SELECT COUNT(*) FROM `cliente`";
   $result = $conn->query($sql);
   $row = $result->fetch_row();
@@ -224,18 +228,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                   </tr>
                   <?php while($row = $result->fetch_assoc()): ?>
                   <tr>
-                      <td><?php echo $row['nom'] ?></td> <!-- Replace with client name -->
-                      <td><?php echo $row['titre'] ?></td> <!-- Replace with activity title -->
-                      <td><?php echo $row['status'] ?></td> <!-- Replace with current status -->
+                      <td><?php echo $row['nom'] ?></td> 
+                      <td><?php echo $row['titre'] ?></td> 
+                      <td><?php echo $row['status'] ?></td> 
                       <td>
-                      <select name='status[" . $row['id_reservation'] . "]' class='w3-select w3-border w3-round'>
-                        <option value='En attente'" . ($row['status'] == 'En attente' ? ' selected' : '') . ">En attente</option>
-                        <option value='Confirmée'" . ($row['status'] == 'Confirmée' ? ' selected' : '') . ">Confirmée</option>
-                        <option value='Annulée'" . ($row['status'] == 'Annulée' ? ' selected' : '') . ">Annulée</option>
-                    </select>
+                          <select name='status[<?php echo $row['id_reservation']; ?>]' class='w3-select w3-border w3-round'>
+                              <option value='En attente' <?php echo ($row['status'] == 'En attente' ? 'selected' : ''); ?>>En attente</option>
+                              <option value='Confirmée' <?php echo ($row['status'] == 'Confirmée' ? 'selected' : ''); ?>>Confirmée</option>
+                              <option value='Annulée' <?php echo ($row['status'] == 'Annulée' ? 'selected' : ''); ?>>Annulée</option>
+                          </select>
                       </td>
                   </tr>
-                  <!-- Repeat the above <tr> for each reservation -->
                   <?php endwhile ?>
               </table>
               <br>
