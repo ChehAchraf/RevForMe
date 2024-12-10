@@ -57,7 +57,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>&nbsp; Close Menu</a>
     <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>&nbsp; Overview</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>&nbsp; Views</a>
+    <a id="delete"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>&nbsp; Views</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>&nbsp; Traffic</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>&nbsp; Geo</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>&nbsp; Orders</a>
@@ -70,7 +70,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 
 <!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<div class="w3-overlay w3-hide-large w3-animate-opacity w3hidd" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
@@ -254,7 +254,187 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <!-- End page content -->
 </div>
+<div class="w3-main w3-hide" style="margin-left:300px;margin-top:43px;">
 
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-dashboard"></i> ok</b></h5>
+  </header>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3><?php echo $do == true ? $row_activity[0] : 0 ?></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Events</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3><?php echo $result == true ? $row[0] : 0 ?></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Users</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-row-padding  w3-padding-16"> 
+    <div class="w3-half">
+        <div class="w3-container">
+            <h3>Create Client</h3>
+            <div class="w3-card-4 w3-padding-32 w3-margin-top w3-round w3-container">
+                <form action="../inc/add_client.php" method="POST" 
+                    
+                    <label for="nom">First Name (Nom):</label><br>
+                    <input class="w3-input w3-border w3-round" type="text" id="nom" name="nom" required><br><br>
+
+                    <label for="prenom">Last Name (Prenom):</label><br>
+                    <input class="w3-input w3-border w3-round" type="text" id="prenom" name="prenom" required><br><br>
+
+                    <label for="email">Email:</label><br>
+                    <input class="w3-input w3-border w3-round" type="email" id="email" name="email" required><br><br>
+
+                    <label for="telephone">Phone (Telephone):</label><br>
+                    <input class="w3-input w3-border w3-round" type="tel" id="telephone" name="telephone" required><br><br>
+
+                    <label for="adresse">Address (Adresse):</label><br>
+                    <textarea class="w3-input w3-border w3-round" id="adresse" name="adresse" rows="4" required></textarea><br><br>
+
+                    <label for="date_naissance">Date of Birth (Date de Naissance):</label><br>
+                    <input class="w3-input w3-border w3-round" type="date" id="date_naissance" name="date_naissance" required><br><br>
+
+                    <button type="submit" class="w3-btn w3-blue w3-round">Add Client</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <div class="w3-half">
+        <div class="w3-container">
+            <h3>Create Event</h3>
+            <div class="w3-card-4 w3-padding-32 w3-margin-top w3-round w3-container">
+            <form action="../inc/add_activity.php" method="POST">
+
+                <label for="titre">Event Title (Titre):</label><br>
+                <input class="w3-input w3-border w3-round" type="text" id="titre" name="titre" required><br><br>
+
+                <label for="description">Description:</label><br>
+                <textarea class="w3-input w3-border w3-round" id="description" name="description" rows="4" required></textarea><br><br>
+
+                <label for="destination">Destination:</label><br>
+                <input class="w3-input w3-border w3-round" type="text" id="destination" name="destination" required><br><br>
+
+                <label for="prix">Price (Prix):</label><br>
+                <input class="w3-input w3-border w3-round" type="number" id="prix" name="prix" required min="0" step="0.01"><br><br>
+
+                <label for="date_debut">Start Date (Date de Début):</label><br>
+                <input class="w3-input w3-border w3-round" type="date" id="date_debut" name="date_debut" required><br><br>
+
+                <label for="date_fin">End Date (Date de Fin):</label><br>
+                <input class="w3-input w3-border w3-round" type="date" id="date_fin" name="date_fin" required><br><br>
+
+                <label for="places_disponible">Available Places (Places Disponibles):</label><br>
+                <input class="w3-input w3-border w3-round" type="number" id="places_disponible" name="places_disponible" required min="1"><br><br>
+
+                <button type="submit" class="w3-btn w3-blue w3-round">Add Event</button>
+            </form>
+            </div>
+        </div>
+    </div>
+    <div class="w3-half">
+        <div class="w3-container">
+            <h3>Make a Reservation</h3>
+            <div class="w3-card-4 w3-padding-32 w3-margin-top w3-round w3-container">
+                <form action="../inc/process_reservation.php" method="POST">
+
+                    <?php 
+                      $sql = "SELECT * FROM `cliente`";  
+                      $result = $conn->query($sql);
+                    ?>
+                    <label for="client_id">Select Client:</label><br>
+                    <select class="w3-input w3-border w3-round" id="client_id" name="client_id" required>
+                        <option value="" disabled selected>Select a Client</option>
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                        <option value="<?php echo $row['id_client'] ?>"><?php echo $row['nom'] ." ".  $row['prenom'] ?></option>
+                        <?php endwhile?>
+                    </select><br><br>
+
+                    <?php
+                      $sql = "SELECT * FROM `activite`";
+                      $result = $conn->query($sql);
+                    ?>
+                    <label for="activity_id">Select Activity:</label><br>
+                    <select class="w3-input w3-border w3-round" id="activity_id" name="activity_id" required>
+                        <option value="" disabled selected>Select an Activity</option>
+                        <?php while($row = $result->fetch_assoc()): ?>
+                        <option value="<?php echo $row['id_activite'] ?>"><?php echo $row['titre'] ?></option>
+                        <?php endwhile ?>
+                    </select><br><br>
+
+                    <button type="submit" class="w3-btn w3-blue w3-round">Make Reservation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="w3-half">
+        <div class="w3-container">
+            <h3>Confirm Reservations</h3>
+            <div class="w3-card-4 w3-padding-32 w3-margin-top w3-round w3-container">
+            <?php 
+                $sql = " SELECT * FROM `reservation` 
+                        INNER JOIN 
+                        cliente on reservation.id_client = cliente.id_client
+                        INNER JOIN
+                        activite on reservation.id_activite = activite.id_activite";
+                $result = $conn->query($sql);
+                if(!$result){
+                  echo "there must be an error";
+                }
+            ?>
+            
+            <form action="../inc/edit_act_status.php" method="POST">
+              <table class="w3-table w3-bordered">
+                  <tr>
+                      <th>Client Name</th>
+                      <th>Activity</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                  </tr>
+                  <?php while($row = $result->fetch_assoc()): ?>
+                  <tr>
+                      <td><?php echo $row['nom'] ?></td> 
+                      <td><?php echo $row['titre'] ?></td> 
+                      <td><?php echo $row['status'] ?></td> 
+                      <td>
+                          <select name='status[<?php echo $row['id_reservation']; ?>]' class='w3-select w3-border w3-round'>
+                              <option value='En attente' <?php echo ($row['status'] == 'En attente' ? 'selected' : ''); ?>>En attente</option>
+                              <option value='Confirmée' <?php echo ($row['status'] == 'Confirmée' ? 'selected' : ''); ?>>Confirmée</option>
+                              <option value='Annulée' <?php echo ($row['status'] == 'Annulée' ? 'selected' : ''); ?>>Annulée</option>
+                          </select>
+                      </td>
+                  </tr>
+                  <?php endwhile ?>
+              </table>
+              <br>
+              <button type="submit" class="w3-btn w3-blue w3-round">Update Status</button>
+            </form>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <hr>
+  <br>
+
+
+  <!-- End page content -->
+</div>
 <script>
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
@@ -279,6 +459,6 @@ function w3_close() {
   overlayBg.style.display = "none";
 }
 </script>
-
+  <script src="../js/main.js"></script>
 </body>
 </html>
