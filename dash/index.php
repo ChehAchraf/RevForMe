@@ -180,7 +180,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                     <select class="w3-input w3-border w3-round" id="client_id" name="client_id" required>
                         <option value="" disabled selected>Select a Client</option>
                         <?php while ($row = $result->fetch_assoc()): ?>
-                        <option value="<?php echo $row['id_client'] ?>"><?php echo $row['nom'] ." ".  $row['nom'] ?></option>
+                        <option value="<?php echo $row['id_client'] ?>"><?php echo $row['nom'] ." ".  $row['prenom'] ?></option>
                         <?php endwhile?>
                     </select><br><br>
 

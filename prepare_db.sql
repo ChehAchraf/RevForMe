@@ -1,6 +1,7 @@
+-- TO create the DB
 CREATE DATABASE IF NOT EXISTS revforme;
 USE revforme;
-
+-- To create All the DB Tables
 CREATE TABLE IF NOT EXISTS cliente (
     id_client INT(11) NOT NULL AUTO_INCREMENT,
     nom VARCHAR(100) NOT NULL,
@@ -34,3 +35,37 @@ CREATE TABLE IF NOT EXISTS reservation (
     FOREIGN KEY (id_client) REFERENCES cliente(id_client) ON DELETE CASCADE,
     FOREIGN KEY (id_activite) REFERENCES activite(id_activite)ON DELETE CASCADE
 );
+
+-- to Join the Tables and show reservations
+SELECT * FROM `reservation`  INNER JOIN cliente on reservation.id_client = cliente.id_client INNER JOIN activite on reservation.id_activite = activite.id_activite;
+
+-- To insert a new activity 
+INSERT INTO `activite`(`titre`,`description`,`destination`,`prix`,`date_debut`,`date_fin`,`places_disponible`) VALUES('$titre','$description','$destination','$prix','$date_debut','$date_fin','$places_disponible');
+
+--To insert new client 
+INSERT INTO `cliente`(`nom`,`prenom`,`email`,`telephone`,`adresse`,`date_naissance`) VALUES('$nom','$prenom','$email','$telephone','$adresse','$ddn')
+
+-- to make a reservation for a client 
+
+INSERT INTO `reservation`(`id_client`,`id_activite`,`date_reservation`,`status`) VALUES('$IdClient','$ActivityId',NOW(),'$status');
+
+-- TO delete a reservation 
+
+DELETE FROM `reservation` WHERE `id_reservation` = '$id';
+
+-- to edit actityt sttaus
+
+UPDATE reservation set status = '$value' where id_reservation = '$key';
+
+-- to show all the client 
+
+SELECT * FROM `cliente`;
+
+-- to show all the acticity 
+
+SELECT * FROM `activite`;
+
+
+
+
+
