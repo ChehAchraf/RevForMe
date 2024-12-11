@@ -8,7 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
             $status = "En attente";
             $IdClient = $_POST['client_id'];
             $ActivityId = $_POST['activity_id'];
-            $sql = "INSERT INTO `reservation`(`id_client`,`id_activite`,`date_reservation`,`status`) VALUES('$IdClient','$ActivityId',NOW(),'$status')";
+            $sql = "INSERT INTO `reservation`(`id_client`,`id_activite`,`date_reservation`,`status`) 
+            VALUES('$IdClient','$ActivityId',NOW(),'$status')";
             echo"hello";
             $result = $conn->query($sql);
             if($result){

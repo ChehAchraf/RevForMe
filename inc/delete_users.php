@@ -7,8 +7,10 @@
         $result = $conn->query($sql);
         if($result){
             echo "Deleted";
+            header("Location: ../dash/index.php");
         }
     }else {
+        echo"notfound";
         $_SESSION['NotFound'] = "Sorry The Id was Not found";
         header('Location: ../index.php');
     }

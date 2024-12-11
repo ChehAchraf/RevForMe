@@ -59,7 +59,6 @@ if(isset($_SESSION['added'])){
                 <i class="fa-solid fa-check"><span class="text-[12px]"> Places: 4</span></i>
             </div>
             </div>
-
             <div class="w-[30%] bg-gray-100 p-8 rounded-lg flex flex-col items-center justify-center space-y-4">
             <h1 class="text-[25px] text-center">Make a reservation</h1>
             <div id="form" action="" class="flex flex-col items-center space-y-4">

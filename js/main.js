@@ -9,5 +9,5 @@ document.getElementById('clsmodal').addEventListener('click', function(e){
 
 })  
 document.getElementById('delete').addEventListener('click', function(){
-    
+    alert('working')
 })

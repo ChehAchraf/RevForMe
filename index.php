@@ -68,7 +68,7 @@
                 <p class="text-sm text-gray-600">price : <?php echo $row['prix'] ?> DH</p>
                 <p class="text-sm text-gray-600">places : <?php echo $row['places_disponible'] ?> Place</p>
 
-                <a href="#" class="text-xs bg-red-600 text-white rounded-full px-4 py-2 mt-16 hover:bg-red-700 transition-colors">Delete</a>
+                <a href="inc/delete_activite.php?id=<?php echo $row['id_activite'] ?>" class="text-xs bg-red-600 text-white rounded-full px-4 py-2 mt-16 hover:bg-red-700 transition-colors">Delete</a>
             </div>
         </div>
         <?php endwhile ?>
@@ -93,8 +93,8 @@
             $res = $conn->query($calc);
             ?>
             <?php while($row = $result->fetch_assoc()): ?>
-                <div class="bg-[#8080801c] text-center rounded-sm hvr-grow cursor-pointer w-full">
-            <div class="p-4">
+            <div class="bg-[#8080801c] text-center rounded-sm hvr-grow cursor-pointer w-full">
+                <div class="p-4">
                 <!-- Title -->
                 <h3 class="font-semibold text-xl"><?php echo $row['titre']; ?></h3>
 
@@ -106,8 +106,8 @@
 
                 <!-- Delete Button -->
                 <a href="inc/delete_res.php?id=<?php echo $row['id_reservation'] ?>"  class="text-xs bg-red-600 text-white rounded-full px-4 py-2 mt-8 hover:bg-red-700 transition-colors">Delete</a>
-            </div>
-        </div>  
+                </div>
+            </div>  
 
             <?php endwhile ?>
         </div>
@@ -119,8 +119,8 @@
                 $sql = "SELECT * FROM `cliente`";
                 $result = $conn->query($sql);
             ?>
-<section class="min-h-[700px] bg-[url('img/mountains.jpg')] bg-cover bg-center">
-    <div class="py-16 px-8 bg-black bg-opacity-70 h-full">
+<section class="h-[1000px] bg-[url('img/mountains.jpg')] bg-cover bg-center">
+    <div class="py-16 px-8 bg-black bg-opacity-70 min-h-full">
         <p class="text-[50px] text-center text-white font-light animate__animated animate__slideInUp">Check Our Customers!</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 px-32">
             <?php while($row = $result->fetch_assoc()): ?>
