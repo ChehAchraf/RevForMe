@@ -66,12 +66,15 @@ SELECT * FROM `cliente`;
 SELECT * FROM `activite`;
 
 -- to rename table 
+
 RENAME TABLE `revforme`.`client` TO `revforme`.`cliente`;
 
 -- to update a row in activite 
+
 UPDATE `activite` SET `titre` = 'oussama' WHERE `activite`.`id_activite` = 9;
 
 -- to edit a column 
+
 ALTER TABLE `activite` CHANGE `prix` `price` DECIMAL(10,2) NOT NULL;
 
 

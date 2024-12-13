@@ -1,4 +1,5 @@
 <?php
+include('db.php');
 session_start();
 if(isset($_SESSION['added'])){
     echo $_SESSION['added'];
@@ -41,30 +42,43 @@ if(isset($_SESSION['added'])){
             </div>
         </div>
     </section>
-
+    <?php 
+    if(isset($_GET['id']) && is_numeric($_GET['id']) ){
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM `activite` where `id_activite`= '$id'";
+        $result = $conn->query($sql);
+    }else{
+        header("Location: ../index.php");
+    }
+        
+    ?>
     <section class="px-32 py-24">
         <div class="flex justify-between">
             <div class="w-[65%] bg-gray-100 p-8 rounded-lg">
-                <h1 class="text-[30px]">Event Title</h1>
-                <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-300">
-                <article class="mt-4">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, ex error. Blanditiis nulla odio aperiam? Officiis dolorum provident consequatur tempora dignissimos harum esse eum quam laudantium. At sint adipisci in.
-                </article>
-                <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-300">
-                <div class="flex space-x-4 text-[12px] itesm-center justify-center">
-                <i class="fa-solid fa-map-pin"><span class="text-[12px]"> Destination : Safi</span></i> 
-                <i class="fa-solid fa-money-bill"><span class="text-[12px]"> Money : 200 DH</span></i>
-                <i class="fa-solid fa-calendar"><span class="text-[12px]"> Start At : 12/12/2000</span></i>
-                <i class="fa-solid fa-calendar"><span class="text-[12px]"> End At : 12/12/2000</span></i>
-                <i class="fa-solid fa-check"><span class="text-[12px]"> Places: 4</span></i>
-            </div>
+                <?php while($row = $result->fetch_assoc()): ?>
+                <div>
+                    <h1 class="text-[30px]"><?php echo $row['titre'] ?></h1>
+                    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-300">
+                    <article class="mt-4">
+                        <?php echo $row['description'] ?>
+                    </article>
+                    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-300">
+                    <div class="flex space-x-4 text-[12px] itesm-center justify-center">
+                    <i class="fa-solid fa-map-pin"><span class="text-[12px]"> Destination : <?php echo $row['destination'] ?></span></i> 
+                    <i class="fa-solid fa-money-bill"><span class="text-[12px]"> Money : <?php echo $row['prix'] ?> DH</span></i>
+                    <i class="fa-solid fa-calendar"><span class="text-[12px]"> Start At : <?php echo $row['date_debut'] ?></span></i>
+                    <i class="fa-solid fa-calendar"><span class="text-[12px]"> End At : <?php echo $row['date_fin'] ?></span></i>
+                    <i class="fa-solid fa-check"><span class="text-[12px]"> Places: <?php echo $row['places_disponible'] ?></span></i>
+                    </div>
+                </div>
+                <?php endwhile ?>
             </div>
             <div class="w-[30%] bg-gray-100 p-8 rounded-lg flex flex-col items-center justify-center space-y-4">
             <h1 class="text-[25px] text-center">Make a reservation</h1>
             <div id="form" action="" class="flex flex-col items-center space-y-4">
                 <input id="name_for_resrev" type="text" name"name_for_resrev" class="p-2 rounded-lg" placeholder="Enter your First name">
                 <button id="sub" class="bg-blue-500 w-[50%] p-2 text-white roundedt-sm hover:bg-blue-700">Submit</button>
-</div>
+        </div>
             </div>
         </div>
     </section>

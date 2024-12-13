@@ -5,43 +5,8 @@
     if(!$result){
         echo "There must be an error : " . $conn->error;
     }
-    
+    include('inc/header.php');
 ?>
-<!doctype html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="css/hover.css">
-  <script src="tailwind.config.js"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-    </style>
-</head>
-<body class="font-primary">
-    <section class="min-h-[100vh] bg-[url('img/background.jpg')] bg-cover flex flex-col">
-        <header>
-            <nav class="py-6 px-32 	flex justify-between text-white sticky ">
-                <p>RevForMe</p>
-                <div class="flex space-x-4">
-                    <a href="#">Home</a>
-                    <a href="#">Reservations</a>
-                    <a href="./dash/index.php">manage</a>
-                </div>
-            </nav>
-        </header>
-        <div class="px-32 h-[100vh] flex items-center justify-between">
-            <h1 class="text-[50px] text-white animate__animated animate__fadeInLeft">Planning for you're <br> Next adventure ?</h1>
-            <div class="bg-[#16595494] w-[40%] flex flex-col items-center py-12 rounded-lg text-white animate__animated animate__fadeInRight">
-                <form action="#" class="flex flex-col items-center space-y-3">
-                    <label> Search... </label>
-                    <input type="text" name="search_name" id="search_name" class="p-2 rounded-full w-[100%]">
-                </form>
-            </div>
-        </div>
-    </section>
 
     <section class="py-24 px-32">
     <p class="text-[50px] text-center text-black font-light animate__animated animate__slideInUp">Latest Activities</p>
@@ -59,7 +24,7 @@
         <div class="bg-[#8080801c] text-center rounded-sm hvr-grow cursor-pointer w-full">
             <div class="p-4">
                 <!-- Activity Title -->
-                <h3 class="font-semibold text-xl"><?php echo $row['titre'] ?></h3>
+                <h3 class="font-semibold text-xl"><a href="inc/details.php?id=<?php echo $row['id_activite'] ?>"><?php echo $row['titre'] ?></a></h3>
 
                 <!-- Activity Dates -->
                 <p class="text-sm text-gray-600"><?php echo $row['date_debut'] ?> - <?php echo $row['date_fin'] ?></p>
@@ -140,8 +105,4 @@
 </section>
 
 
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
+<?php include('inc/footer.php') ?>

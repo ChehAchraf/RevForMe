@@ -2,6 +2,7 @@
 session_start();
 include ('db.php');
 
+
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
     if (isset($_POST['client_id']) && isset($_POST['activity_id']) ){
         if(!empty($_POST['client_id']) && !empty($_POST['activity_id']) ){
